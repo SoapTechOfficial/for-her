@@ -7,7 +7,7 @@ const dailyNote = {
     date: "19 / 08 / 26",
 
     message:
-        "first day of the site, dont forget that i love you."
+        "first day of the site, made it especially for you. love you."
 
 };
 
@@ -18,21 +18,135 @@ const dailyNote = {
 
 const introQuotes = [
 
-    "this place is just for you. ♡",
+    "this place is just for you ♡",
 
-    "i wanted to make you something that meant more than flowers.",
+    "i wanted to make you something",
+
+    "welcome to your little corner of the internet",
 
     "you deserve little reminders",
 
     "some things are easier to write down",
 
-    "I hope this makes you smile",
+    "i hope this makes you smile",
 
     "take your time",
 
-    "there's something waiting for you",
+    "theres something waiting for you",
 
-    "i know you like corners.. so welcome to your little corner of the internet. ♡"
+    "you made it here ♡",
+
+    "a little piece of my thoughts, for you",
+
+    "just a few things i wanted you to have",
+
+    "for the days you need a reminder",
+
+    "for the moments you need a smile",
+
+    "you dont have to rush through this",
+
+    "stay for a little while",
+
+    "i made this with you in mind",
+
+    "theres no particular reason to hurry",
+
+    "a quiet little place for a very special person",
+
+    "i hope you know how much you matter",
+
+    "even the little things deserve to be remembered",
+
+    "some memories deserve their own little place",
+
+    "this is only the beginning",
+
+    "theres always room for another little memory",
+
+    "come back whenever you need a reminder",
+
+    "maybe this will make today a little better",
+
+    "i hope youre smiling right now",
+
+    "youve got a whole little world waiting for you",
+
+    "one little page at a time",
+
+    "made slowly, with a lot of thought",
+
+    "because sometimes a simple reminder is enough",
+
+    "for good days, bad days, and everything between",
+
+    "you are worth making something beautiful for",
+
+    "if you needed a sign to smile, here it is",
+
+    "somewhere in here is a little reminder of us",
+
+    "theres more to this than the first page",
+
+    "keep looking",
+
+    "you might find something meant just for you",
+
+    "the best things arent always the loudest",
+
+    "sometimes the smallest things mean the most",
+
+    "another little reminder that youre cared about",
+
+    "this screen is temporary, but the thought behind it isnt",
+
+    "i hope you feel at home here",
+
+    "nothing complicated, just something made for you",
+
+    "you deserve to have good things waiting for you",
+
+    "a tiny corner of the internet, reserved for you",
+
+    "before you see everything, just know this was made for you ♡",
+
+    "i know you like corners.. so i made you a little corner of the internet.",
+
+    "this took me way too long lmao",
+
+    "you better smile when you see this",
+
+    "idk what else to say so just look around",
+
+    "youre stuck with this now",
+
+    "welcome i guess",
+
+    "alright lets do this",
+
+    "this ones yours",
+
+    "just for you",
+
+    "because i wanted to",
+
+    "because you deserve it",
+
+    "i thought you might like this",
+
+    "theres gonna be more here eventually",
+
+    "come back tomorrow",
+
+    "ill probably change something by then",
+
+    "i have more planned",
+
+    "dont leave yet",
+
+    "okay maybe now you can look",
+
+    "♡"
 
 ];
 
@@ -58,7 +172,7 @@ const status =
 
 
 /* =====================================================
-   INTRO STARFIELD
+   STARFIELD
 ===================================================== */
 
 function createStars(container, amount) {
@@ -101,37 +215,110 @@ createStars(
 
 
 /* =====================================================
-   ROTATING INTRO QUOTES
+   SMART RANDOM QUOTE SYSTEM
 ===================================================== */
 
-let quoteIndex = 0;
+let unusedQuotes =
+    JSON.parse(
+        localStorage.getItem("unusedIntroQuotes")
+    );
+
+
+/*
+    if there is no saved quote pool,
+    create one from the full list
+*/
+
+if (
+    !Array.isArray(unusedQuotes) ||
+    unusedQuotes.length === 0
+) {
+
+    unusedQuotes =
+        [...introQuotes];
+
+}
+
+
+/* get the next random unused quote */
+
+function getNextQuote() {
+
+    /*
+        if every quote has been seen,
+        start a completely new cycle
+    */
+
+    if (
+        unusedQuotes.length === 0
+    ) {
+
+        unusedQuotes =
+            [...introQuotes];
+
+    }
+
+
+    const randomIndex =
+        Math.floor(
+            Math.random() *
+            unusedQuotes.length
+        );
+
+
+    const selectedQuote =
+        unusedQuotes.splice(
+            randomIndex,
+            1
+        )[0];
+
+
+    /*
+        remember which quotes
+        are still unused
+    */
+
+    localStorage.setItem(
+        "unusedIntroQuotes",
+        JSON.stringify(
+            unusedQuotes
+        )
+    );
+
+
+    return selectedQuote;
+
+}
+
+
+/* =====================================================
+   QUOTE TRANSITIONS
+===================================================== */
 
 const quoteDuration = 2400;
 
-const introDuration =
-    introQuotes.length * quoteDuration;
+
+/* show first quote */
+
+quote.textContent =
+    getNextQuote();
 
 
-/* Show next quote */
+/* change quote */
 
-function nextQuote() {
+function showNextQuote() {
 
     quote.classList.add("fade");
 
+
     setTimeout(() => {
 
-        quoteIndex++;
-
-        if (quoteIndex >= introQuotes.length) {
-
-            quoteIndex = 0;
-
-        }
-
         quote.textContent =
-            introQuotes[quoteIndex];
+            getNextQuote();
 
-        quote.classList.remove("fade");
+        quote.classList.remove(
+            "fade"
+        );
 
     }, 800);
 
@@ -140,35 +327,49 @@ function nextQuote() {
 
 const quoteInterval =
     setInterval(
-        nextQuote,
+        showNextQuote,
         quoteDuration
     );
 
 
 /* =====================================================
-   LOADING PROGRESS
+   INTRO LOADING PROGRESS
 ===================================================== */
 
-let startTime =
+const introDuration =
+    introQuotes.length *
+    quoteDuration;
+
+
+const startTime =
     performance.now();
 
 
-function updateProgress(currentTime) {
+function updateProgress(
+    currentTime
+) {
 
     const elapsed =
-        currentTime - startTime;
+        currentTime -
+        startTime;
+
 
     const percentage =
         Math.min(
-            elapsed / introDuration,
+            elapsed /
+            introDuration,
             1
         );
 
+
     progress.style.width =
-        percentage * 100 + "%";
+        percentage * 100 +
+        "%";
 
 
-    if (percentage < 1) {
+    if (
+        percentage < 1
+    ) {
 
         requestAnimationFrame(
             updateProgress
@@ -190,7 +391,10 @@ requestAnimationFrame(
 
 setTimeout(() => {
 
-    clearInterval(quoteInterval);
+    clearInterval(
+        quoteInterval
+    );
+
 
     status.textContent =
         "just for you";
@@ -202,12 +406,19 @@ setTimeout(() => {
 
     setTimeout(() => {
 
-        intro.classList.add("hidden");
+        intro.classList.add(
+            "hidden"
+        );
 
-        site.classList.add("visible");
+
+        site.classList.add(
+            "visible"
+        );
+
 
         document.body.style.overflow =
             "auto";
+
 
     }, 900);
 
@@ -236,39 +447,58 @@ document.getElementById(
 ===================================================== */
 
 const envelopes =
-    document.querySelectorAll(".envelope");
-
-const modal =
-    document.getElementById("message-modal");
-
-const modalMessage =
-    document.getElementById("modal-message");
-
-const modalClose =
-    document.getElementById("modal-close");
-
-
-envelopes.forEach(envelope => {
-
-    envelope.addEventListener(
-        "click",
-        () => {
-
-            const message =
-                envelope.dataset.message;
-
-            modalMessage.textContent =
-                message;
-
-            modal.classList.add("active");
-
-        }
+    document.querySelectorAll(
+        ".envelope"
     );
 
-});
+
+const modal =
+    document.getElementById(
+        "message-modal"
+    );
 
 
-/* Close modal */
+const modalMessage =
+    document.getElementById(
+        "modal-message"
+    );
+
+
+const modalClose =
+    document.getElementById(
+        "modal-close"
+    );
+
+
+envelopes.forEach(
+    envelope => {
+
+        envelope.addEventListener(
+            "click",
+            () => {
+
+                const message =
+                    envelope.dataset.message;
+
+
+                modalMessage.textContent =
+                    message;
+
+
+                modal.classList.add(
+                    "active"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
 
 modalClose.addEventListener(
     "click",
@@ -282,7 +512,7 @@ modalClose.addEventListener(
 );
 
 
-/* Click outside */
+/* close when clicking outside */
 
 modal.addEventListener(
     "click",
@@ -302,7 +532,7 @@ modal.addEventListener(
 );
 
 
-/* Escape key */
+/* close with escape */
 
 document.addEventListener(
     "keydown",
