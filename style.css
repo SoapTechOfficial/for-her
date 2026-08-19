@@ -1,21 +1,16 @@
 :root {
 
     --background: #09090d;
-
     --surface: rgba(255, 255, 255, 0.045);
-
     --border: rgba(255, 255, 255, 0.09);
 
     --text: #f5f3f0;
-
     --muted: #aaa7ae;
 
     --accent: #e8a6b5;
-
     --accent-soft: rgba(232, 166, 181, 0.16);
 
     --serif: "Playfair Display", Georgia, serif;
-
     --sans: "DM Sans", Arial, sans-serif;
 
 }
@@ -56,7 +51,7 @@ body {
 
 
 /* =========================
-   INTRO SCREEN
+   INTRO
 ========================= */
 
 #intro {
@@ -244,6 +239,8 @@ body {
 
     box-shadow: 0 0 12px var(--accent);
 
+    transition: width 0.1s linear;
+
 }
 
 
@@ -267,6 +264,19 @@ body {
 .loader-text span:last-child {
 
     color: var(--accent);
+
+}
+
+
+/* =========================
+   INTRO STARS
+========================= */
+
+#intro-stars {
+
+    position: absolute;
+
+    inset: 0;
 
 }
 
@@ -476,8 +486,7 @@ body {
 }
 
 
-#stars,
-#intro-stars {
+#stars {
 
     position: absolute;
 
@@ -528,7 +537,7 @@ body {
 
 
 /* =========================
-   NAV
+   NAVIGATION
 ========================= */
 
 nav {
@@ -554,6 +563,8 @@ nav {
     background: rgba(9, 9, 13, 0.65);
 
     backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
 
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
@@ -1049,7 +1060,8 @@ section h2 {
 
     transition:
         transform 0.3s ease,
-        background 0.3s ease;
+        background 0.3s ease,
+        border-color 0.3s ease;
 
 }
 
@@ -1060,6 +1072,8 @@ section h2 {
 
     background: rgba(255, 255, 255, 0.07);
 
+    border-color: rgba(232, 166, 181, 0.25);
+
 }
 
 
@@ -1068,6 +1082,8 @@ section h2 {
     color: var(--accent);
 
     font-size: 23px;
+
+    flex-shrink: 0;
 
 }
 
@@ -1082,7 +1098,7 @@ section h2 {
 
     padding-top: 180px !important;
 
-    padding-bottom: 180px !important;
+    padding-bottom: 100px !important;
 
 }
 
@@ -1118,6 +1134,15 @@ section h2 {
 }
 
 
+.ending-heart:hover {
+
+    filter: drop-shadow(
+        0 0 15px var(--accent)
+    );
+
+}
+
+
 .ending p {
 
     color: var(--muted);
@@ -1136,6 +1161,27 @@ section h2 {
     font-size: 10px;
 
     letter-spacing: 0.15em;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+
+    text-align: center;
+
+    padding: 30px 20px 55px;
+
+    color: #4f4d54;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    letter-spacing: 0.08em;
 
 }
 
@@ -1162,11 +1208,15 @@ section h2 {
 
     backdrop-filter: blur(12px);
 
+    -webkit-backdrop-filter: blur(12px);
+
     opacity: 0;
 
     visibility: hidden;
 
-    transition: 0.3s ease;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
 
     z-index: 500;
 
@@ -1202,7 +1252,8 @@ section h2 {
 
     transform: translateY(20px) scale(0.97);
 
-    transition: 0.3s ease;
+    transition:
+        transform 0.3s ease;
 
 }
 
@@ -1254,116 +1305,14 @@ section h2 {
 
     cursor: pointer;
 
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-
-    nav {
-
-        padding: 0 20px;
-
-    }
-
-
-    .nav-links {
-
-        display: none;
-
-    }
-
-
-    section:not(.hero) {
-
-        padding: 100px 20px;
-
-    }
-
-
-    .hero {
-
-        padding-left: 20px;
-
-        padding-right: 20px;
-
-    }
-
-
-    .things-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .envelope-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .note {
-
-        padding: 55px 25px;
-
-    }
-
-
-    .daily-card {
-
-        border-radius: 18px;
-
-    }
-
-
-    .thing-card {
-
-        min-height: auto;
-
-    }
-
-
-    .name-reveal-title {
-
-        font-size: clamp(38px, 11vw, 65px);
-
-    }
-
-
-    .name-reveal-title span {
-
-        padding: 0 4px;
-
-    }
-
-
-    .name-reveal-small {
-
-        letter-spacing: 0.18em;
-
-    }
+    transition: color 0.2s ease;
 
 }
-/* =========================
-   FOOTER
-========================= */
 
-.site-footer {
 
-    text-align: center;
+.modal-close:hover {
 
-    padding: 30px 20px 50px;
-
-    color: #4f4d54;
-
-    font-size: 10px;
-
-    letter-spacing: 0.08em;
+    color: white;
 
 }
 
@@ -1392,6 +1341,8 @@ section h2 {
 
     backdrop-filter: blur(12px);
 
+    -webkit-backdrop-filter: blur(12px);
+
     color: var(--muted);
 
     font-size: 18px;
@@ -1407,7 +1358,9 @@ section h2 {
     transition:
         opacity 0.3s ease,
         transform 0.3s ease,
-        visibility 0.3s ease;
+        visibility 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
 
     z-index: 150;
 
@@ -1443,6 +1396,8 @@ section h2 {
     cursor: pointer;
 
     user-select: none;
+
+    -webkit-tap-highlight-color: transparent;
 
 }
 
@@ -1480,10 +1435,139 @@ section h2 {
 
 
 /* =========================
-   MOBILE EXTRAS
+   MOBILE
 ========================= */
 
 @media (max-width: 700px) {
+
+    nav {
+
+        padding: 0 20px;
+
+    }
+
+
+    .nav-links {
+
+        display: none;
+
+    }
+
+
+    section:not(.hero) {
+
+        padding: 100px 20px;
+
+    }
+
+
+    .hero {
+
+        padding:
+            120px 20px 80px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            clamp(58px, 17vw, 90px);
+
+    }
+
+
+    .hero-text {
+
+        font-size: 14px;
+
+        max-width: 360px;
+
+    }
+
+
+    .things-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .envelope-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .note {
+
+        padding:
+            55px 25px;
+
+    }
+
+
+    .daily-card {
+
+        border-radius: 18px;
+
+    }
+
+
+    .card-top,
+    .card-bottom {
+
+        padding-left: 18px;
+
+        padding-right: 18px;
+
+    }
+
+
+    .thing-card {
+
+        min-height: auto;
+
+    }
+
+
+    .name-reveal-title {
+
+        font-size:
+            clamp(38px, 11vw, 65px);
+
+    }
+
+
+    .name-reveal-title span {
+
+        padding: 0 4px;
+
+    }
+
+
+    .name-reveal-small {
+
+        letter-spacing: 0.18em;
+
+    }
+
+
+    .modal-box {
+
+        padding:
+            55px 28px;
+
+    }
+
+
+    .modal-box p {
+
+        font-size: 22px;
+
+    }
+
 
     #back-to-top {
 
@@ -1504,7 +1588,72 @@ section h2 {
 
         padding-right: 25px;
 
-        line-height: 1.6;
+    }
+
+}
+
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media (max-width: 430px) {
+
+    .card-top {
+
+        gap: 15px;
+
+        align-items: center;
+
+    }
+
+
+    .card-top span {
+
+        font-size: 9px;
+
+    }
+
+
+    .note p {
+
+        font-size: 28px;
+
+    }
+
+
+    .quote-mark {
+
+        font-size: 65px;
+
+    }
+
+
+    .intro-small {
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .intro-quote-wrapper {
+
+        min-height: 150px;
+
+    }
+
+
+    .intro-quote {
+
+        padding:
+            0 10px;
+
+    }
+
+
+    .intro-loader {
+
+        margin-top: 40px;
 
     }
 
