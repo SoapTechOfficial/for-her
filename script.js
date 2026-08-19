@@ -176,7 +176,11 @@ const introContent =
     document.querySelector(".intro-content");
 
 const nameReveal =
-    document.getElementById("name-reveal");
+    document.getElementById(
+        "name-reveal"
+    );
+
+document.body.style.overflow = "hidden";
 
 
 /* =====================================================
@@ -636,9 +640,7 @@ backToTop.addEventListener(
 );
 
 
-getElementById(
-        "secret-close"
-    );
+
 
 
 const secretLines =
@@ -647,9 +649,6 @@ const secretLines =
     );
 
 
-let heartClicks = 0;
-
-let secretOpened = false;
 
 /* =====================================================
    SECRET HEART
