@@ -636,24 +636,7 @@ backToTop.addEventListener(
 );
 
 
-/* =====================================================
-   SECRET HEART
-===================================================== */
-
-const secretHeart =
-    document.getElementById(
-        "secret-heart"
-    );
-
-
-const secretPage =
-    document.getElementById(
-        "secret-page"
-    );
-
-
-const secretClose =
-    document.getElementById(
+getElementById(
         "secret-close"
     );
 
@@ -668,114 +651,113 @@ let heartClicks = 0;
 
 let secretOpened = false;
 
+/* =====================================================
+   SECRET HEART
+===================================================== */
+
+const secretHeart = document.getElementById("secret-heart");
+const secretPage = document.getElementById("secret-page");
+const secretClose = document.getElementById("secret-close");
+
+let heartClicks = 0;
+let clickTimer = null;
+let secretOpened = false;
+
+
+/* =========================
+   HEART CLICK
+========================= */
+
+if (secretHeart && secretPage) {
+
+    secretHeart.addEventListener("click", function () {
+
+        if (secretOpened) return;
+
+        heartClicks++;
+
+        secretHeart.classList.add("secret-found");
+
+        setTimeout(() => {
+            secretHeart.classList.remove("secret-found");
+        }, 500);
+
+        clearTimeout(clickTimer);
+
+        clickTimer = setTimeout(() => {
+            heartClicks = 0;
+        }, 1200);
+
+        if (heartClicks >= 3) {
+
+            clearTimeout(clickTimer);
+
+            heartClicks = 0;
+
+            openSecret();
+
+        }
+
+    });
+
+}
+
 
 /* =========================
    OPEN SECRET
 ========================= */
 
-secretHeart.addEventListener(
-    "click",
-    () => {
+function openSecret() {
 
-        heartClicks++;
+    if (secretOpened) return;
 
+    secretOpened = true;
 
-        /*
-            Three clicks keeps the
-            little heart from opening
-            accidentally.
-        */
+    secretPage.classList.add("active");
 
-        if (
-            heartClicks < 3
-        ) {
+    secretPage.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
-            secretHeart.classList.add(
-                "secret-found"
-            );
+    startSecretReveal();
 
-            setTimeout(() => {
-
-                secretHeart.classList.remove(
-                    "secret-found"
-                );
-
-            }, 500);
-
-            return;
-
-        }
-
-
-        if (
-            secretOpened
-        ) {
-
-            return;
-
-        }
-
-
-        secretOpened = true;
-
-        heartClicks = 0;
-
-
-        secretPage.classList.add(
-            "active"
-        );
-
-
-        secretPage.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-
-        document.body.style.overflow =
-            "hidden";
-
-
-        startSecretReveal();
-
-    }
-);
+}
 
 
 /* =========================
-   SECRET REVEAL
+   REVEAL
 ========================= */
 
 function startSecretReveal() {
 
-    secretLines.forEach(
-        line => {
-
-            const delay =
-                Number(
-                    line.dataset.delay
-                );
-
-
-            setTimeout(() => {
-
-                line.classList.add(
-                    "show"
-                );
-
-            }, delay);
-
-        }
+    const lines = document.querySelectorAll(
+        "#secret-page .secret-line, #secret-page .secret-final, #secret-page .secret-last"
     );
 
+    lines.forEach(line => {
 
-    setTimeout(() => {
-
-        secretClose.classList.add(
-            "show"
+        const delay = Number(
+            line.dataset.delay || 0
         );
 
-    }, 31500);
+        setTimeout(() => {
+
+            line.classList.add("show");
+
+        }, delay);
+
+    });
+
+    if (secretClose) {
+
+        setTimeout(() => {
+
+            secretClose.classList.add("show");
+
+        }, 31500);
+
+    }
 
 }
 
@@ -784,57 +766,31 @@ function startSecretReveal() {
    CLOSE SECRET
 ========================= */
 
-secretClose.addEventListener(
-    "click",
-    () => {
+if (secretClose) {
 
-        secretPage.classList.remove(
-            "active"
-        );
+    secretClose.addEventListener("click", function () {
 
+        secretPage.classList.remove("active");
 
         secretPage.setAttribute(
             "aria-hidden",
             "true"
         );
 
+        const lines = document.querySelectorAll(
+            "#secret-page .secret-line, #secret-page .secret-final, #secret-page .secret-last"
+        );
 
-        document.body.style.overflow =
-            "auto";
+        lines.forEach(line => {
+            line.classList.remove("show");
+        });
 
+        if (secretClose) {
+            secretClose.classList.remove("show");
+        }
 
-        setTimeout(() => {
+        secretOpened = false;
 
-            secretLines.forEach(
-                line => {
+    });
 
-                    line.classList.remove(
-                        "show"
-                    );
-
-                }
-            );
-
-
-            secretClose.classList.remove(
-                "show"
-            );
-
-
-            secretOpened = false;
-
-
-            window.scrollTo({
-
-                top:
-                    document.body.scrollHeight,
-
-                behavior:
-                    "smooth"
-
-            });
-
-        }, 1500);
-
-    }
-);
+}
