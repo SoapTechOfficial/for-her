@@ -153,6 +153,8 @@ body {
 
     z-index: 2;
 
+    transition: opacity 0.8s ease;
+
 }
 
 
@@ -163,8 +165,6 @@ body {
     font-size: 10px;
 
     letter-spacing: 0.2em;
-
-    text-transform: uppercase;
 
     margin-bottom: 45px;
 
@@ -227,7 +227,7 @@ body {
 
     height: 1px;
 
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
 
     overflow: hidden;
 
@@ -261,14 +261,133 @@ body {
 
     letter-spacing: 0.15em;
 
-    text-transform: uppercase;
-
 }
 
 
 .loader-text span:last-child {
 
     color: var(--accent);
+
+}
+
+
+/* =========================
+   NAME REVEAL
+========================= */
+
+#name-reveal {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: scale(0.96);
+
+    transition:
+        opacity 1s ease,
+        transform 1.2s ease,
+        visibility 1s ease;
+
+    z-index: 10;
+
+}
+
+
+#name-reveal.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: scale(1);
+
+}
+
+
+.name-reveal-small {
+
+    color: #77747c;
+
+    font-size: 10px;
+
+    letter-spacing: 0.25em;
+
+    margin-bottom: 25px;
+
+}
+
+
+.name-reveal-title {
+
+    font-family: var(--serif);
+
+    font-size: clamp(42px, 8vw, 85px);
+
+    font-style: italic;
+
+    font-weight: 400;
+
+    letter-spacing: -0.04em;
+
+}
+
+
+.name-reveal-title span {
+
+    color: var(--accent);
+
+    font-style: normal;
+
+    padding: 0 8px;
+
+}
+
+
+.name-reveal-heart {
+
+    color: var(--accent);
+
+    font-size: 28px;
+
+    margin-top: 25px;
+
+    animation: revealHeart 2s ease-in-out infinite;
+
+}
+
+
+@keyframes revealHeart {
+
+    0%,
+    100% {
+
+        opacity: 0.45;
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform: scale(1.12);
+
+    }
 
 }
 
@@ -436,7 +555,7 @@ nav {
 
     backdrop-filter: blur(18px);
 
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
     z-index: 100;
 
@@ -524,8 +643,6 @@ nav {
     font-size: 12px;
 
     letter-spacing: 0.12em;
-
-    text-transform: uppercase;
 
     margin-bottom: 30px;
 
@@ -701,8 +818,8 @@ section h2 {
     background:
         linear-gradient(
             135deg,
-            rgba(255,255,255,0.07),
-            rgba(255,255,255,0.025)
+            rgba(255, 255, 255, 0.07),
+            rgba(255, 255, 255, 0.025)
         );
 
     border: 1px solid var(--border);
@@ -712,8 +829,8 @@ section h2 {
     overflow: hidden;
 
     box-shadow:
-        0 30px 100px rgba(0,0,0,0.35),
-        inset 0 1px rgba(255,255,255,0.05);
+        0 30px 100px rgba(0, 0, 0, 0.35),
+        inset 0 1px rgba(255, 255, 255, 0.05);
 
 }
 
@@ -732,8 +849,6 @@ section h2 {
     font-size: 11px;
 
     letter-spacing: 0.1em;
-
-    text-transform: uppercase;
 
 }
 
@@ -849,9 +964,9 @@ section h2 {
 
     transform: translateY(-8px);
 
-    background: rgba(255,255,255,0.07);
+    background: rgba(255, 255, 255, 0.07);
 
-    border-color: rgba(232,166,181,0.3);
+    border-color: rgba(232, 166, 181, 0.3);
 
 }
 
@@ -943,7 +1058,7 @@ section h2 {
 
     transform: translateY(-5px);
 
-    background: rgba(255,255,255,0.07);
+    background: rgba(255, 255, 255, 0.07);
 
 }
 
@@ -1022,8 +1137,6 @@ section h2 {
 
     letter-spacing: 0.15em;
 
-    text-transform: uppercase;
-
 }
 
 
@@ -1045,7 +1158,7 @@ section h2 {
 
     padding: 25px;
 
-    background: rgba(0,0,0,0.75);
+    background: rgba(0, 0, 0, 0.75);
 
     backdrop-filter: blur(12px);
 
@@ -1211,6 +1324,27 @@ section h2 {
     .thing-card {
 
         min-height: auto;
+
+    }
+
+
+    .name-reveal-title {
+
+        font-size: clamp(38px, 11vw, 65px);
+
+    }
+
+
+    .name-reveal-title span {
+
+        padding: 0 4px;
+
+    }
+
+
+    .name-reveal-small {
+
+        letter-spacing: 0.18em;
 
     }
 
