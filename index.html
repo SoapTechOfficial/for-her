@@ -1,62 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>For You ♡</title>
+<head>
+
+    <meta charset="UTF-8">
 
     <meta
-        name="description"
-        content="A little place made just for you."
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
     >
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>for you ♡</title>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap"
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
+
     <!-- =========================
-         LOADING / INTRO SCREEN
+         INTRO
     ========================== -->
 
     <div id="intro">
 
         <div class="intro-background">
+
             <div class="intro-glow intro-glow-one"></div>
+
             <div class="intro-glow intro-glow-two"></div>
+
             <div id="intro-stars"></div>
+
         </div>
+
 
         <div class="intro-content">
 
-            <div id="name-reveal">
-
-    <div class="name-reveal-small">
-        just us
-    </div>
-
-    <div class="name-reveal-title">
-        pedro <span>×</span> hannah
-    </div>
-
-    <div class="name-reveal-heart">
-        ♡
-    </div>
-
-</div>
-
             <div class="intro-small">
-                a little something for you
+                just for you
             </div>
+
 
             <div class="intro-quote-wrapper">
 
@@ -66,17 +71,53 @@
 
             </div>
 
+
             <div class="intro-loader">
 
                 <div class="loader-track">
+
                     <div id="loader-progress"></div>
+
                 </div>
+
 
                 <div class="loader-text">
-                    <span id="loader-status">loading...</span>
-                    <span>♡</span>
+
+                    <span>
+                        making something
+                    </span>
+
+                    <span>
+                        ♡
+                    </span>
+
                 </div>
 
+            </div>
+
+        </div>
+
+
+        <!-- NAME REVEAL -->
+
+        <div id="name-reveal">
+
+            <div class="name-reveal-small">
+                just us
+            </div>
+
+
+            <div class="name-reveal-title">
+
+                pedro
+                <span>×</span>
+                hannah
+
+            </div>
+
+
+            <div class="name-reveal-heart">
+                ♡
             </div>
 
         </div>
@@ -84,16 +125,20 @@
     </div>
 
 
+
     <!-- =========================
          MAIN SITE
     ========================== -->
 
-    <div id="site">
+    <main id="site">
 
-        <!-- Background -->
+
+        <!-- BACKGROUND -->
+
         <div class="background">
 
             <div class="glow glow-one"></div>
+
             <div class="glow glow-two"></div>
 
             <div id="stars"></div>
@@ -101,380 +146,448 @@
         </div>
 
 
-        <!-- Navigation -->
+
+        <!-- NAV -->
+
         <nav>
 
             <div class="nav-logo">
-                for you <span>♡</span>
+
+                for <span>you</span>
+
             </div>
+
 
             <div class="nav-links">
 
-                <a href="#today">today</a>
-                <a href="#things">little things</a>
-                <a href="#open-when">open when</a>
+                <a href="#today">
+                    today
+                </a>
+
+                <a href="#things">
+                    little things
+                </a>
+
+                <a href="#letters">
+                    open when
+                </a>
 
             </div>
 
         </nav>
 
 
+
         <!-- =========================
              HERO
         ========================== -->
 
-        <main>
+        <section class="hero">
 
-            <section class="hero">
+            <div class="eyebrow">
 
-                <div class="eyebrow">
+                <span class="dot"></span>
 
-                    <span class="dot"></span>
+                a little corner of the internet
 
-                    a little place made for you
-
-                </div>
+            </div>
 
 
-                <h1>
+            <h1>
 
-                    Hey,
+                made
 
-                    <span>you.</span>
+                <span>
+                    for you.
+                </span>
 
-                </h1>
-
-
-                <p class="hero-text">
-
-                    I wanted to make somewhere that could remind you
-                    just how loved you are.
-
-                </p>
+            </h1>
 
 
-                <a
-                    class="scroll-button"
-                    href="#today"
-                >
+            <p class="hero-text">
 
-                    <span>↓</span>
+                i wanted to make somewhere
+                that could hold all the little
+                things i never want you to forget.
 
-                    there's something for you
-
-                </a>
-
-            </section>
+            </p>
 
 
-            <!-- =========================
-                 DAILY NOTE
-            ========================== -->
-
-            <section
-                class="daily-section"
-                id="today"
+            <a
+                href="#today"
+                class="scroll-button"
             >
 
-                <div class="section-label">
-                    TODAY'S NOTE
-                </div>
+                see whats here
 
+                <span>
+                    ↓
+                </span>
 
-                <div class="daily-card">
+            </a>
 
-                    <div class="card-top">
+        </section>
 
-                        <span id="daily-date">
-                            19 / 08 / 26
-                        </span>
-
-                        <span>♡</span>
-
-                    </div>
-
-
-                    <div class="note">
-
-                        <div class="quote-mark">
-                            “
-                        </div>
-
-
-                        <p id="daily-message">
-                            first day of the site, made it especially for you. love you.
-                        </p>
-
-
-                        <div class="signature">
-                            — from me, to you
-                        </div>
-
-                    </div>
-
-
-                    <div class="card-bottom">
-
-                        written especially for you
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =========================
-                 LITTLE THINGS
-            ========================== -->
-
-            <section
-                class="things-section"
-                id="things"
-            >
-
-                <div class="section-label">
-                    THE LITTLE THINGS
-                </div>
-
-
-                <h2>
-                    It's not just the big things.
-                </h2>
-
-
-                <p class="section-description">
-
-                    sometimes its the smallest things
-                    that make someone impossible to forget.
-
-                </p>
-
-
-                <div class="things-grid">
-
-                    <div class="thing-card">
-
-                        <div class="thing-number">
-                            01
-                        </div>
-
-                        <h3>
-                            the way youre always happy
-                        </h3>
-
-                        <p>
-                            the kind of thing that can make a
-                            completely ordinary moment feel special.
-                        </p>
-
-                    </div>
-
-
-                    <div class="thing-card">
-
-                        <div class="thing-number">
-                            02
-                        </div>
-
-                        <h3>
-                            your kindness
-                        </h3>
-
-                        <p>
-                            The way you care says more
-                            about you than you probably realise.
-                        </p>
-
-                    </div>
-
-
-                    <div class="thing-card">
-
-                        <div class="thing-number">
-                            03
-                        </div>
-
-                        <h3>
-                            you being you
-                        </h3>
-
-                        <p>
-                            honestly, there's no better version of you
-                            than the one that's simply yourself.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =========================
-                 OPEN WHEN
-            ========================== -->
-
-            <section
-                class="open-section"
-                id="open-when"
-            >
-
-                <div class="section-label">
-                    A FEW LITTLE LETTERS
-                </div>
-
-
-                <h2>
-                    Open when...
-                </h2>
-
-
-                <p class="section-description">
-
-                    pick one. i might have left something
-                    there for you.
-
-                </p>
-
-
-                <div class="envelope-grid">
-
-
-                    <button
-                        class="envelope"
-                        data-message="if youre having a bad day, remember that one bad day doesnt set your whole life. ♡"
-                    >
-
-                        <span class="envelope-icon">
-                            ✉
-                        </span>
-
-                        <span>
-                            you're having a bad day
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        class="envelope"
-                        data-message="if you miss me, remember that i AM somewhere out there, thinking about you. ♡"
-                    >
-
-                        <span class="envelope-icon">
-                            ✉
-                        </span>
-
-                        <span>
-                            you miss me
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        class="envelope"
-                        data-message="if you need a reason to smile, you're you. that's already a pretty good reason."
-                    >
-
-                        <span class="envelope-icon">
-                            ✉
-                        </span>
-
-                        <span>
-                            you need a smile
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        class="envelope"
-                        data-message="if you forget how much you mean to me, come see me and ill make sure to remind you."
-                    >
-
-                        <span class="envelope-icon">
-                            ✉
-                        </span>
-
-                        <span>
-                            you forget how loved you are
-                        </span>
-
-                    </button>
-
-
-                </div>
-
-            </section>
-
-
-            <!-- =========================
-                 ENDING
-            ========================== -->
-
-            <section class="ending">
-
-                <div class="ending-heart">
-                    ♡
-                </div>
-
-
-                <h2>
-                    thats all for now.
-                </h2>
-
-
-                <p>
-                    ill keep adding to this.
-                </p>
-
-
-                <div class="ending-date">
-                    made with love · 2026 · pedro x hannah
-                </div>
-
-            </section>
-
-        </main>
 
 
         <!-- =========================
-             LETTER MODAL
+             DAILY NOTE
         ========================== -->
 
-        <div
-            class="modal"
-            id="message-modal"
+        <section
+            class="daily-section"
+            id="today"
         >
 
-            <div class="modal-box">
-
-                <button
-                    class="modal-close"
-                    id="modal-close"
-                    aria-label="Close"
-                >
-                    ×
-                </button>
+            <div class="section-label">
+                today
+            </div>
 
 
-                <div class="modal-icon">
-                    ♡
+            <h2>
+                a little note.
+            </h2>
+
+
+            <p class="section-description">
+
+                something new every day.
+                because i wanted you to have
+                a little reminder waiting for you.
+
+            </p>
+
+
+            <div class="daily-card">
+
+
+                <div class="card-top">
+
+                    <span id="daily-date">
+                        19 / 08 / 26
+                    </span>
+
+                    <span>
+                        todays note
+                    </span>
+
                 </div>
 
 
-                <p id="modal-message"></p>
+                <div class="note">
+
+                    <div class="quote-mark">
+                        “
+                    </div>
+
+
+                    <p id="daily-message">
+
+                        first day of the site,
+                        love you.
+
+                    </p>
+
+
+                    <div class="signature">
+
+                        — pedro ♡
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-bottom">
+
+                    come back tomorrow ♡
+
+                </div>
 
             </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             LITTLE THINGS
+        ========================== -->
+
+        <section id="things">
+
+            <div class="section-label">
+                little things
+            </div>
+
+
+            <h2>
+                things i like
+                about you.
+            </h2>
+
+
+            <p class="section-description">
+
+                not everything needs a big
+                explanation. sometimes its
+                just the little things.
+
+            </p>
+
+
+            <div class="things-grid">
+
+
+                <div class="thing-card">
+
+                    <div class="thing-number">
+                        01
+                    </div>
+
+                    <h3>
+                        your smile
+                    </h3>
+
+                    <p>
+                        you already know.
+                    </p>
+
+                </div>
+
+
+                <div class="thing-card">
+
+                    <div class="thing-number">
+                        02
+                    </div>
+
+                    <h3>
+                        the little things
+                    </h3>
+
+                    <p>
+                        the random stuff you
+                        probably dont even realise
+                        you do.
+                    </p>
+
+                </div>
+
+
+                <div class="thing-card">
+
+                    <div class="thing-number">
+                        03
+                    </div>
+
+                    <h3>
+                        just you
+                    </h3>
+
+                    <p>
+                        honestly i dont think
+                        i need much more explanation
+                        than that.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             OPEN WHEN
+        ========================== -->
+
+        <section id="letters">
+
+            <div class="section-label">
+                open when
+            </div>
+
+
+            <h2>
+                for certain days.
+            </h2>
+
+
+            <p class="section-description">
+
+                little letters for whenever
+                you need them.
+
+            </p>
+
+
+            <div class="envelope-grid">
+
+
+                <button
+                    class="envelope"
+                    data-message="hey. whatever happened today, take a breath. you probably doing better than you think my love. ♡"
+                >
+
+                    <span class="envelope-icon">
+                        ♡
+                    </span>
+
+                    <span>
+                        open when you need a smile
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="envelope"
+                    data-message="i know today might suck. but you dont have to go through it alone."
+                >
+
+                    <span class="envelope-icon">
+                        ♡
+                    </span>
+
+                    <span>
+                        open when today sucks
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="envelope"
+                    data-message="you did it. whatever it was, you got through it today. im proud of you. i always am rockstar."
+                >
+
+                    <span class="envelope-icon">
+                        ♡
+                    </span>
+
+                    <span>
+                        open when youre proud of yourself
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="envelope"
+                    data-message="i love you. alot. come see me, and ill remind you how much i love you myself."
+                >
+
+                    <span class="envelope-icon">
+                        ♡
+                    </span>
+
+                    <span>
+                        open when you need a reminder
+                    </span>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             ENDING
+        ========================== -->
+
+        <section class="ending">
+
+            <div
+                class="ending-heart"
+                id="secret-heart"
+            >
+                ♡
+            </div>
+
+
+            <h2>
+                thats all for now.
+            </h2>
+
+
+            <p>
+                but ill keep adding to it. peice by peice.
+            </p>
+
+
+            <div class="ending-date">
+                made for you ♡
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="site-footer">
+
+            made with a bit of time
+            and alot of love ♡
+            pedro x hannah - est 2025.
+
+        </footer>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         MODAL
+    ========================== -->
+
+    <div
+        class="modal"
+        id="message-modal"
+    >
+
+        <div class="modal-box">
+
+            <button
+                class="modal-close"
+                id="modal-close"
+                aria-label="close"
+            >
+                ×
+            </button>
+
+
+            <div class="modal-icon">
+                ♡
+            </div>
+
+
+            <p id="modal-message"></p>
 
         </div>
 
     </div>
 
 
+
+    <!-- BACK TO TOP -->
+
+    <button
+        id="back-to-top"
+        aria-label="back to top"
+    >
+        ↑
+    </button>
+
+
     <script src="script.js"></script>
 
 </body>
+
 </html>
