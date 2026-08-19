@@ -1660,25 +1660,20 @@ section h2 {
 }
 /* =========================
    SECRET PAGE
-   hidden until the heart
-   is discovered
 ========================= */
 
 #secret-page {
 
     position: fixed;
-
     inset: 0;
 
     z-index: 900;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
-    padding: 30px;
+    padding: 40px 25px;
 
     background:
         radial-gradient(
@@ -1694,12 +1689,10 @@ section h2 {
         #08080c;
 
     opacity: 0;
-
     visibility: hidden;
-
     pointer-events: none;
 
-    overflow: hidden;
+    overflow-y: auto;
 
     transition:
         opacity 1.5s ease,
@@ -1711,25 +1704,22 @@ section h2 {
 #secret-page.active {
 
     opacity: 1;
-
     visibility: visible;
-
     pointer-events: auto;
 
 }
 
 
 /* =========================
-   SECRET BACKGROUND
+   BACKGROUND
 ========================= */
 
 .secret-glow {
 
     position: absolute;
 
-    width: 500px;
-
-    height: 500px;
+    width: 550px;
+    height: 550px;
 
     border-radius: 50%;
 
@@ -1739,7 +1729,7 @@ section h2 {
 
     filter: blur(150px);
 
-    transform: scale(0.5);
+    transform: scale(0.6);
 
     transition:
         opacity 3s ease,
@@ -1751,8 +1741,7 @@ section h2 {
 #secret-page.active .secret-glow {
 
     opacity: 0.10;
-
-    transform: scale(1.2);
+    transform: scale(1.1);
 
 }
 
@@ -1760,7 +1749,6 @@ section h2 {
 .secret-stars {
 
     position: absolute;
-
     inset: 0;
 
     pointer-events: none;
@@ -1774,7 +1762,6 @@ section h2 {
     content: "";
 
     position: absolute;
-
     inset: 0;
 
     background-image:
@@ -1784,24 +1771,19 @@ section h2 {
             transparent 1px
         );
 
-    background-size:
-        170px 170px;
+    background-size: 170px 170px;
 
     opacity: 0;
 
-    transition:
-        opacity 3s ease;
+    transition: opacity 3s ease;
 
 }
 
 
 .secret-stars::after {
 
-    background-size:
-        260px 260px;
-
-    background-position:
-        80px 100px;
+    background-size: 260px 260px;
+    background-position: 80px 100px;
 
 }
 
@@ -1815,7 +1797,7 @@ section h2 {
 
 
 /* =========================
-   SECRET CONTENT
+   CONTENT
 ========================= */
 
 .secret-content {
@@ -1828,8 +1810,14 @@ section h2 {
 
     text-align: center;
 
+    padding: 100px 0;
+
 }
 
+
+/* =========================
+   INTRO
+========================= */
 
 .secret-small {
 
@@ -1841,7 +1829,7 @@ section h2 {
 
     text-transform: uppercase;
 
-    margin-bottom: 45px;
+    margin-bottom: 80px;
 
     opacity: 0;
 
@@ -1863,21 +1851,19 @@ section h2 {
 }
 
 
+/* =========================
+   MESSAGE
+========================= */
+
 .secret-line,
 .secret-final,
 .secret-last {
 
-    position: absolute;
+    position: relative;
 
-    left: 0;
+    width: 100%;
 
-    right: 0;
-
-    top: 50%;
-
-    transform:
-        translateY(-35%)
-        translateY(12px);
+    margin: 0 auto 130px;
 
     font-family: var(--serif);
 
@@ -1886,11 +1872,13 @@ section h2 {
 
     font-style: italic;
 
-    line-height: 1.45;
+    line-height: 1.5;
 
     color: var(--text);
 
     opacity: 0;
+
+    transform: translateY(25px);
 
     transition:
         opacity 1.3s ease,
@@ -1905,9 +1893,7 @@ section h2 {
 
     opacity: 1;
 
-    transform:
-        translateY(-35%)
-        translateY(0);
+    transform: translateY(0);
 
 }
 
@@ -1919,6 +1905,8 @@ section h2 {
     font-size:
         clamp(18px, 3vw, 25px);
 
+    margin-bottom: 150px;
+
 }
 
 
@@ -1929,24 +1917,20 @@ section h2 {
     font-size:
         clamp(32px, 6vw, 58px);
 
+    margin-bottom: 120px;
+
 }
 
 
 /* =========================
-   SECRET CLOSE
+   CLOSE BUTTON
 ========================= */
 
 #secret-close {
 
-    position: absolute;
+    display: block;
 
-    top: calc(50% + 190px);
-
-    left: 50%;
-
-    transform:
-        translateX(-50%)
-        translateY(10px);
+    margin: 0 auto;
 
     border: 1px solid var(--border);
 
@@ -1971,6 +1955,8 @@ section h2 {
 
     visibility: hidden;
 
+    transform: translateY(10px);
+
     transition:
         opacity 1s ease,
         transform 1s ease,
@@ -1986,9 +1972,7 @@ section h2 {
 
     visibility: visible;
 
-    transform:
-        translateX(-50%)
-        translateY(0);
+    transform: translateY(0);
 
 }
 
@@ -2004,28 +1988,34 @@ section h2 {
 
 
 /* =========================
-   SECRET MOBILE
+   MOBILE
 ========================= */
 
 @media (max-width: 700px) {
 
     #secret-page {
 
-        padding: 20px;
+        padding:
+            25px 20px;
+
+        align-items: flex-start;
 
     }
 
 
     .secret-content {
 
-        width: 90%;
+        width: 92%;
+
+        padding:
+            80px 0 100px;
 
     }
 
 
     .secret-small {
 
-        margin-bottom: 30px;
+        margin-bottom: 70px;
 
     }
 
@@ -2037,7 +2027,7 @@ section h2 {
         font-size:
             clamp(24px, 7vw, 36px);
 
-        padding: 0 5px;
+        margin-bottom: 100px;
 
     }
 
@@ -2054,17 +2044,6 @@ section h2 {
 
         font-size:
             clamp(30px, 9vw, 48px);
-
-    }
-
-
-    #secret-close {
-
-        top: calc(50% + 180px);
-
-        max-width: 90%;
-
-        white-space: nowrap;
 
     }
 
