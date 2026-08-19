@@ -1658,3 +1658,414 @@ section h2 {
     }
 
 }
+/* =========================
+   SECRET PAGE
+   hidden until the heart
+   is discovered
+========================= */
+
+#secret-page {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 900;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(232, 166, 181, 0.10),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(143, 123, 212, 0.08),
+            transparent 35%
+        ),
+        #08080c;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    transition:
+        opacity 1.5s ease,
+        visibility 1.5s ease;
+
+}
+
+
+#secret-page.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+
+/* =========================
+   SECRET BACKGROUND
+========================= */
+
+.secret-glow {
+
+    position: absolute;
+
+    width: 500px;
+
+    height: 500px;
+
+    border-radius: 50%;
+
+    background: #d77f9b;
+
+    opacity: 0;
+
+    filter: blur(150px);
+
+    transform: scale(0.5);
+
+    transition:
+        opacity 3s ease,
+        transform 4s ease;
+
+}
+
+
+#secret-page.active .secret-glow {
+
+    opacity: 0.10;
+
+    transform: scale(1.2);
+
+}
+
+
+.secret-stars {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+}
+
+
+.secret-stars::before,
+.secret-stars::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.7) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        170px 170px;
+
+    opacity: 0;
+
+    transition:
+        opacity 3s ease;
+
+}
+
+
+.secret-stars::after {
+
+    background-size:
+        260px 260px;
+
+    background-position:
+        80px 100px;
+
+}
+
+
+#secret-page.active .secret-stars::before,
+#secret-page.active .secret-stars::after {
+
+    opacity: 0.18;
+
+}
+
+
+/* =========================
+   SECRET CONTENT
+========================= */
+
+.secret-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: min(720px, 92%);
+
+    text-align: center;
+
+}
+
+
+.secret-small {
+
+    color: #77747c;
+
+    font-size: 10px;
+
+    letter-spacing: 0.25em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 45px;
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+
+}
+
+
+#secret-page.active .secret-small {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+
+.secret-line,
+.secret-final,
+.secret-last {
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    top: 50%;
+
+    transform:
+        translateY(-35%)
+        translateY(12px);
+
+    font-family: var(--serif);
+
+    font-size:
+        clamp(27px, 4.5vw, 45px);
+
+    font-style: italic;
+
+    line-height: 1.45;
+
+    color: var(--text);
+
+    opacity: 0;
+
+    transition:
+        opacity 1.3s ease,
+        transform 1.3s ease;
+
+}
+
+
+.secret-line.show,
+.secret-final.show,
+.secret-last.show {
+
+    opacity: 1;
+
+    transform:
+        translateY(-35%)
+        translateY(0);
+
+}
+
+
+.secret-final {
+
+    color: var(--muted);
+
+    font-size:
+        clamp(18px, 3vw, 25px);
+
+}
+
+
+.secret-last {
+
+    color: var(--accent);
+
+    font-size:
+        clamp(32px, 6vw, 58px);
+
+}
+
+
+/* =========================
+   SECRET CLOSE
+========================= */
+
+#secret-close {
+
+    position: absolute;
+
+    top: calc(50% + 190px);
+
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        translateY(10px);
+
+    border: 1px solid var(--border);
+
+    border-radius: 30px;
+
+    padding: 12px 20px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    color: var(--muted);
+
+    font-family: var(--sans);
+
+    font-size: 11px;
+
+    letter-spacing: 0.05em;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+
+}
+
+
+#secret-close.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+}
+
+
+#secret-close:hover {
+
+    color: white;
+
+    border-color:
+        rgba(232,166,181,0.4);
+
+}
+
+
+/* =========================
+   SECRET MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    #secret-page {
+
+        padding: 20px;
+
+    }
+
+
+    .secret-content {
+
+        width: 90%;
+
+    }
+
+
+    .secret-small {
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .secret-line,
+    .secret-final,
+    .secret-last {
+
+        font-size:
+            clamp(24px, 7vw, 36px);
+
+        padding: 0 5px;
+
+    }
+
+
+    .secret-final {
+
+        font-size:
+            clamp(17px, 5vw, 23px);
+
+    }
+
+
+    .secret-last {
+
+        font-size:
+            clamp(30px, 9vw, 48px);
+
+    }
+
+
+    #secret-close {
+
+        top: calc(50% + 180px);
+
+        max-width: 90%;
+
+        white-space: nowrap;
+
+    }
+
+}
