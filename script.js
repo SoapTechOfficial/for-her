@@ -647,8 +647,32 @@ const secretHeart =
     );
 
 
+const secretPage =
+    document.getElementById(
+        "secret-page"
+    );
+
+
+const secretClose =
+    document.getElementById(
+        "secret-close"
+    );
+
+
+const secretLines =
+    document.querySelectorAll(
+        ".secret-line, .secret-final, .secret-last"
+    );
+
+
 let heartClicks = 0;
 
+let secretOpened = false;
+
+
+/* =========================
+   OPEN SECRET
+========================= */
 
 secretHeart.addEventListener(
     "click",
@@ -657,27 +681,161 @@ secretHeart.addEventListener(
         heartClicks++;
 
 
+        /*
+            Three clicks keeps the
+            little heart from opening
+            accidentally.
+        */
+
         if (
-            heartClicks === 3
+            heartClicks < 3
         ) {
 
             secretHeart.classList.add(
                 "secret-found"
             );
 
+            setTimeout(() => {
+
+                secretHeart.classList.remove(
+                    "secret-found"
+                );
+
+            }, 500);
+
+            return;
+
+        }
+
+
+        if (
+            secretOpened
+        ) {
+
+            return;
+
+        }
+
+
+        secretOpened = true;
+
+        heartClicks = 0;
+
+
+        secretPage.classList.add(
+            "active"
+        );
+
+
+        secretPage.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+
+        document.body.style.overflow =
+            "hidden";
+
+
+        startSecretReveal();
+
+    }
+);
+
+
+/* =========================
+   SECRET REVEAL
+========================= */
+
+function startSecretReveal() {
+
+    secretLines.forEach(
+        line => {
+
+            const delay =
+                Number(
+                    line.dataset.delay
+                );
+
 
             setTimeout(() => {
 
-                alert(
-                    "okay you found it lol ♡"
+                line.classList.add(
+                    "show"
                 );
 
-            }, 250);
-
-
-            heartClicks = 0;
+            }, delay);
 
         }
+    );
+
+
+    setTimeout(() => {
+
+        secretClose.classList.add(
+            "show"
+        );
+
+    }, 31500);
+
+}
+
+
+/* =========================
+   CLOSE SECRET
+========================= */
+
+secretClose.addEventListener(
+    "click",
+    () => {
+
+        secretPage.classList.remove(
+            "active"
+        );
+
+
+        secretPage.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        document.body.style.overflow =
+            "auto";
+
+
+        setTimeout(() => {
+
+            secretLines.forEach(
+                line => {
+
+                    line.classList.remove(
+                        "show"
+                    );
+
+                }
+            );
+
+
+            secretClose.classList.remove(
+                "show"
+            );
+
+
+            secretOpened = false;
+
+
+            window.scrollTo({
+
+                top:
+                    document.body.scrollHeight,
+
+                behavior:
+                    "smooth"
+
+            });
+
+        }, 1500);
 
     }
 );
