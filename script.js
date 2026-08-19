@@ -457,7 +457,7 @@ setTimeout(() => {
             );
 
 
-            document.body.style.overflow = "hidden";
+            document.body.style.overflow = "auto";
 
 
         }, 1000);
