@@ -792,3 +792,60 @@ if (secretClose) {
     });
 
 }
+/* =====================================================
+   NIGHT BOOK
+===================================================== */
+
+const openNightBook =
+    document.getElementById("open-night-book");
+
+const closeNightBook =
+    document.getElementById("close-night-book");
+
+const nightBookReader =
+    document.getElementById("night-book-reader");
+
+
+if (openNightBook && nightBookReader) {
+
+    openNightBook.addEventListener("click", () => {
+
+        nightBookReader.classList.add("active");
+
+        nightBookReader.scrollTop = 0;
+
+        document.body.style.overflow = "hidden";
+
+    });
+
+}
+
+
+if (closeNightBook && nightBookReader) {
+
+    closeNightBook.addEventListener("click", () => {
+
+        nightBookReader.classList.remove("active");
+
+        document.body.style.overflow = "auto";
+
+    });
+
+}
+
+
+document.addEventListener("keydown", event => {
+
+    if (
+        event.key === "Escape" &&
+        nightBookReader &&
+        nightBookReader.classList.contains("active")
+    ) {
+
+        nightBookReader.classList.remove("active");
+
+        document.body.style.overflow = "auto";
+
+    }
+
+});
