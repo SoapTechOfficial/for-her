@@ -7,7 +7,7 @@ const dailyNote = {
     date: "19 / 08 / 26",
 
     message:
-        "first day of the site, made it especially for you. love you."
+        "first day of the site, dont forget how much i love you."
 
 };
 
@@ -152,7 +152,7 @@ const introQuotes = [
 
 
 /* =====================================================
-   INTRO ELEMENTS
+   ELEMENTS
 ===================================================== */
 
 const intro =
@@ -168,16 +168,31 @@ const progress =
     document.getElementById("loader-progress");
 
 const status =
-    document.getElementById("loader-status");
+    document.querySelector(
+        ".loader-text span:last-child"
+    );
+
+const introContent =
+    document.querySelector(".intro-content");
+
+const nameReveal =
+    document.getElementById("name-reveal");
 
 
 /* =====================================================
-   STARFIELD
+   STARS
 ===================================================== */
 
-function createStars(container, amount) {
+function createStars(
+    container,
+    amount
+) {
 
-    for (let i = 0; i < amount; i++) {
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
 
         const star =
             document.createElement("div");
@@ -208,6 +223,7 @@ createStars(
     80
 );
 
+
 createStars(
     document.getElementById("stars"),
     90
@@ -215,19 +231,16 @@ createStars(
 
 
 /* =====================================================
-   SMART RANDOM QUOTE SYSTEM
+   SMART NON-REPEATING QUOTES
 ===================================================== */
 
 let unusedQuotes =
     JSON.parse(
-        localStorage.getItem("unusedIntroQuotes")
+        localStorage.getItem(
+            "unusedIntroQuotes"
+        )
     );
 
-
-/*
-    if there is no saved quote pool,
-    create one from the full list
-*/
 
 if (
     !Array.isArray(unusedQuotes) ||
@@ -240,14 +253,7 @@ if (
 }
 
 
-/* get the next random unused quote */
-
 function getNextQuote() {
-
-    /*
-        if every quote has been seen,
-        start a completely new cycle
-    */
 
     if (
         unusedQuotes.length === 0
@@ -273,11 +279,6 @@ function getNextQuote() {
         )[0];
 
 
-    /*
-        remember which quotes
-        are still unused
-    */
-
     localStorage.setItem(
         "unusedIntroQuotes",
         JSON.stringify(
@@ -292,19 +293,21 @@ function getNextQuote() {
 
 
 /* =====================================================
-   QUOTE TRANSITIONS
+   INTRO TIMING
 ===================================================== */
 
-const quoteDuration = 2400;
+const quoteDuration = 2200;
+
+const numberOfIntroQuotes = 4;
+
+const introQuoteTime =
+    quoteDuration *
+    numberOfIntroQuotes;
 
 
-/* show first quote */
-
-quote.textContent =
-    getNextQuote();
-
-
-/* change quote */
+/* =====================================================
+   SHOW QUOTES
+===================================================== */
 
 function showNextQuote() {
 
@@ -325,21 +328,40 @@ function showNextQuote() {
 }
 
 
+quote.textContent =
+    getNextQuote();
+
+
+let quoteCount = 1;
+
+
 const quoteInterval =
-    setInterval(
-        showNextQuote,
-        quoteDuration
-    );
+    setInterval(() => {
+
+        if (
+            quoteCount >=
+            numberOfIntroQuotes
+        ) {
+
+            clearInterval(
+                quoteInterval
+            );
+
+            return;
+
+        }
+
+
+        showNextQuote();
+
+        quoteCount++;
+
+    }, quoteDuration);
 
 
 /* =====================================================
-   INTRO LOADING PROGRESS
+   LOADING PROGRESS
 ===================================================== */
-
-const introDuration =
-    introQuotes.length *
-    quoteDuration;
-
 
 const startTime =
     performance.now();
@@ -357,14 +379,13 @@ function updateProgress(
     const percentage =
         Math.min(
             elapsed /
-            introDuration,
+            introQuoteTime,
             1
         );
 
 
     progress.style.width =
-        percentage * 100 +
-        "%";
+        percentage * 100 + "%";
 
 
     if (
@@ -396,34 +417,57 @@ setTimeout(() => {
     );
 
 
-    status.textContent =
-        "just for you";
-
-
     progress.style.width =
         "100%";
 
 
+    status.textContent =
+        "just for you";
+
+
+    introContent.style.opacity =
+        "0";
+
+
     setTimeout(() => {
 
-        intro.classList.add(
-            "hidden"
+        nameReveal.classList.add(
+            "active"
+        );
+
+    }, 700);
+
+
+    setTimeout(() => {
+
+        nameReveal.classList.remove(
+            "active"
         );
 
 
-        site.classList.add(
-            "visible"
-        );
+        setTimeout(() => {
+
+            intro.classList.add(
+                "hidden"
+            );
 
 
-        document.body.style.overflow =
-            "auto";
+            site.classList.add(
+                "visible"
+            );
 
 
-    }, 900);
+            document.body.style.overflow =
+                "auto";
 
 
-}, introDuration);
+        }, 1000);
+
+
+    }, 3200);
+
+
+}, introQuoteTime);
 
 
 /* =====================================================
@@ -477,13 +521,8 @@ envelopes.forEach(
             "click",
             () => {
 
-                const message =
-                    envelope.dataset.message;
-
-
                 modalMessage.textContent =
-                    message;
-
+                    envelope.dataset.message;
 
                 modal.classList.add(
                     "active"
@@ -512,8 +551,6 @@ modalClose.addEventListener(
 );
 
 
-/* close when clicking outside */
-
 modal.addEventListener(
     "click",
     event => {
@@ -532,8 +569,6 @@ modal.addEventListener(
 );
 
 
-/* close with escape */
-
 document.addEventListener(
     "keydown",
     event => {
@@ -545,6 +580,102 @@ document.addEventListener(
             modal.classList.remove(
                 "active"
             );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   BACK TO TOP
+===================================================== */
+
+const backToTop =
+    document.getElementById(
+        "back-to-top"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if (
+            window.scrollY > 500
+        ) {
+
+            backToTop.classList.add(
+                "visible"
+            );
+
+        } else {
+
+            backToTop.classList.remove(
+                "visible"
+            );
+
+        }
+
+    }
+);
+
+
+backToTop.addEventListener(
+    "click",
+    () => {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+);
+
+
+/* =====================================================
+   SECRET HEART
+===================================================== */
+
+const secretHeart =
+    document.getElementById(
+        "secret-heart"
+    );
+
+
+let heartClicks = 0;
+
+
+secretHeart.addEventListener(
+    "click",
+    () => {
+
+        heartClicks++;
+
+
+        if (
+            heartClicks === 3
+        ) {
+
+            secretHeart.classList.add(
+                "secret-found"
+            );
+
+
+            setTimeout(() => {
+
+                alert(
+                    "okay you found it lol ♡"
+                );
+
+            }, 250);
+
+
+            heartClicks = 0;
 
         }
 
