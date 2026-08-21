@@ -4,10 +4,10 @@
 
 const dailyNote = {
 
-    date: "21 / 08 / 26",
+    date: "22 / 08 / 26",
 
     message:
-        "new day, new note. i love you so much han."
+        "hope you sleep better tonight, i love you."
 
 };
 
